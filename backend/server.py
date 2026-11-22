@@ -63,12 +63,16 @@ async def startup_db():
     """Initialize database with seed data"""
     try:
         # Check if admin exists
-        admin_exists = await admins_collection.find_one({"username": "patrickmahamba"})
+        admin_username = os.getenv("ADMIN_USERNAME")
+        admin_password = os.getenv("ADMIN_PASSWORD")
+        if not admin_username or not admin_password:
+            raise RuntimeError("ADMIN_USERNAME and ADMIN_PASSWORD must be configured")
+
+        admin_exists = await admins_collection.find_one({"username": admin_username})
         if not admin_exists:
-            # Create default admin
             admin = Admin(
-                username="patrickmahamba",
-                password=get_password_hash("Design@Business2026")
+                username=admin_username,
+                password=get_password_hash(admin_password)
             )
             await admins_collection.insert_one(admin.dict())
             logger.info("Default admin user created")
