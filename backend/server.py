@@ -1,10 +1,13 @@
-from fastapi import FastAPI, APIRouter, HTTPException, status, Depends
+from fastapi import FastAPI, APIRouter, HTTPException, status, Depends, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from motor.motor_asyncio import AsyncIOMotorClient
 from dotenv import load_dotenv
 from pathlib import Path
 import os
 import logging
+import shutil
+import uuid
 from typing import List, Optional
 from datetime import datetime
 
@@ -20,6 +23,11 @@ from seed_data import initial_categories, initial_products
 # Setup
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
+
+# Uploads directory
+UPLOAD_DIR = ROOT_DIR / "uploads"
+UPLOAD_DIR.mkdir(exist_ok=True)
+PUBLIC_BASE_URL = os.getenv("PUBLIC_BASE_URL", "http://localhost:8000").rstrip("/")
 
 # MongoDB connection
 mongo_url = os.environ['MONGO_URL']
@@ -447,6 +455,43 @@ async def get_contact_messages(_: dict = Depends(verify_admin_token)):
 
 
 # ============================================
+# IMAGE UPLOAD ROUTE
+# ============================================
+ALLOWED_IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp", ".gif"}
+
+@api_router.post("/upload")
+async def upload_images(
+    files: List[UploadFile] = File(...),
+    _: dict = Depends(verify_admin_token)
+):
+    """Upload product images (admin only)"""
+    try:
+        urls = []
+        for file in files:
+            ext = Path(file.filename or "").suffix.lower()
+            if ext not in ALLOWED_IMAGE_EXTENSIONS:
+                raise HTTPException(
+                    status_code=status.HTTP_400_BAD_REQUEST,
+                    detail=f"Format de fichier non supporté: {file.filename}"
+                )
+            filename = f"{uuid.uuid4()}{ext}"
+            with open(UPLOAD_DIR / filename, "wb") as buffer:
+                shutil.copyfileobj(file.file, buffer)
+            urls.append(f"{PUBLIC_BASE_URL}/uploads/{filename}")
+
+        logger.info(f"Uploaded {len(urls)} image(s)")
+        return {"success": True, "images": urls}
+    except HTTPException as he:
+        raise he
+    except Exception as e:
+        logger.error(f"Error uploading images: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Erreur lors de l'upload des images"
+        )
+
+
+# ============================================
 # HEALTH CHECK
 # ============================================
 @api_router.get("/")
@@ -458,6 +503,9 @@ async def root():
 async def health_check():
     return {"status": "healthy", "database": "connected"}
 
+
+# Serve uploaded files
+app.mount("/uploads", StaticFiles(directory=UPLOAD_DIR), name="uploads")
 
 # Include the router in the main app
 app.include_router(api_router)
