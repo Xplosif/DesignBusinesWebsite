@@ -55,6 +55,24 @@ export const authService = {
 };
 
 // ============================================
+// UPLOAD SERVICE
+// ============================================
+export const uploadService = {
+  uploadImages: async (files) => {
+    try {
+      const formData = new FormData();
+      files.forEach((file) => formData.append('files', file));
+      const response = await axios.post(`${API}/upload`, formData, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      });
+      return response.data.images;
+    } catch (error) {
+      throw error.response?.data || { message: 'Erreur lors de l\'upload des images' };
+    }
+  }
+};
+
+// ============================================
 // PRODUCTS SERVICE
 // ============================================
 export const productsService = {

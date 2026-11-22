@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import { Plus, Edit, Trash2, Search } from 'lucide-react';
-import { productsService, categoriesService } from '../../services/api';
+import { useState, useEffect, useRef } from 'react';
+import { Plus, Edit, Trash2, Search, ImagePlus, X } from 'lucide-react';
+import { productsService, categoriesService, uploadService } from '../../services/api';
 import { Card } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
@@ -35,10 +35,11 @@ const AdminProducts = () => {
     category: '',
     price: '',
     description: '',
-    images: '',
     stockQuantity: '',
     inStock: true
   });
+  const [imageFiles, setImageFiles] = useState([]); // [{ file, preview }]
+  const fileInputRef = useRef(null);
 
   useEffect(() => {
     fetchData();
@@ -73,7 +74,6 @@ const AdminProducts = () => {
         category: product.category,
         price: product.price.toString(),
         description: product.description,
-        images: product.images.join(', '),
         stockQuantity: product.stockQuantity.toString(),
         inStock: product.inStock
       });
@@ -84,30 +84,61 @@ const AdminProducts = () => {
         category: '',
         price: '',
         description: '',
-        images: '',
         stockQuantity: '',
         inStock: true
       });
     }
+    setImageFiles([]);
     setIsDialogOpen(true);
   };
 
   const handleCloseDialog = () => {
+    imageFiles.forEach((img) => URL.revokeObjectURL(img.preview));
     setIsDialogOpen(false);
     setEditingProduct(null);
+    setImageFiles([]);
+  };
+
+  const handleFileSelect = (e) => {
+    const files = Array.from(e.target.files || []);
+    const images = files.filter((f) => f.type.startsWith('image/'));
+    if (images.length !== files.length) {
+      toast.error('Seuls les fichiers image sont acceptés');
+    }
+    const newImages = images.map((file) => ({
+      file,
+      preview: URL.createObjectURL(file)
+    }));
+    setImageFiles((prev) => [...prev, ...newImages]);
+    e.target.value = '';
+  };
+
+  const removeImage = (index) => {
+    setImageFiles((prev) => {
+      URL.revokeObjectURL(prev[index].preview);
+      return prev.filter((_, i) => i !== index);
+    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (imageFiles.length < 3) {
+      toast.error('Veuillez sélectionner au minimum 3 images');
+      return;
+    }
+
     setIsSubmitting(true);
     
     try {
+      const imageUrls = await uploadService.uploadImages(imageFiles.map((img) => img.file));
+
       const productData = {
         name: formData.name,
         category: formData.category,
         price: parseFloat(formData.price),
         description: formData.description,
-        images: formData.images.split(',').map(url => url.trim()),
+        images: imageUrls,
         stockQuantity: parseInt(formData.stockQuantity),
         inStock: formData.inStock
       };
@@ -326,15 +357,48 @@ const AdminProducts = () => {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  URLs des images (séparées par des virgules) *
+                  Images du produit * (minimum 3)
                 </label>
-                <Textarea
-                  required
-                  value={formData.images}
-                  onChange={(e) => setFormData({ ...formData, images: e.target.value })}
-                  placeholder="https://example.com/image1.jpg, https://example.com/image2.jpg"
-                  rows={3}
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/*"
+                  multiple
+                  onChange={handleFileSelect}
+                  className="hidden"
                 />
+                <button
+                  type="button"
+                  onClick={() => fileInputRef.current?.click()}
+                  className="w-full border-2 border-dashed border-gray-300 rounded-lg p-6 flex flex-col items-center justify-center text-gray-500 hover:border-[#8B4513] hover:text-[#8B4513] transition-colors"
+                >
+                  <ImagePlus size={32} className="mb-2" />
+                  <span className="text-sm font-medium">Sélectionner des images depuis votre appareil</span>
+                  <span className="text-xs text-gray-400 mt-1">
+                    {imageFiles.length} image(s) sélectionnée(s) — minimum 3 requis
+                  </span>
+                </button>
+
+                {imageFiles.length > 0 && (
+                  <div className="grid grid-cols-3 gap-3 mt-4">
+                    {imageFiles.map((img, index) => (
+                      <div key={index} className="relative group">
+                        <img
+                          src={img.preview}
+                          alt={`Aperçu ${index + 1}`}
+                          className="w-full h-24 object-cover rounded-lg border border-gray-200"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => removeImage(index)}
+                          className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                        >
+                          <X size={14} />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
 
               <div className="flex items-center space-x-2">
