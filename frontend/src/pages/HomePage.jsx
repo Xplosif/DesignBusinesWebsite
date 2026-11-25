@@ -34,9 +34,9 @@ const HomePage = () => {
   return (
     <div>
       {/* Hero Section */}
-      <section className="hero-section relative bg-gradient-to-br from-[#FFF8F0] via-white to-[#FFFAF5] py-20 md:py-32">
+      <section className="hero-section relative bg-gradient-to-br from-[#FFF8F0] via-white to-[#FFFAF5] py-12 md:py-32">
         <div className="container mx-auto px-4 relative z-10">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div className="fade-in-up">
               <div className="flex items-center space-x-2 mb-4">
                 <Sparkles className="text-[#D4AF37]" size={24} />
@@ -44,12 +44,12 @@ const HomePage = () => {
                   Bienvenue chez
                 </span>
               </div>
-              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                 <span className="text-[#8B4513]">Furniture Design</span>
                 <br />
                 <span className="text-[#A0522D]">Business</span>
               </h1>
-              <p className="text-xl md:text-2xl text-gray-600 mb-4 font-light italic">
+              <p className="text-lg md:text-2xl text-gray-600 mb-4 font-light italic">
                 {companyInfo.slogan}
               </p>
               <p className="text-gray-600 mb-8 leading-relaxed max-w-lg">
@@ -57,13 +57,13 @@ const HomePage = () => {
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link to="/catalogue/all">
-                  <Button className="bg-gradient-to-r from-[#8B4513] to-[#A0522D] hover:from-[#A0522D] hover:to-[#8B4513] text-white px-8 py-6 text-lg shadow-lg hover:shadow-xl">
+                  <Button className="bg-gradient-to-r from-[#8B4513] to-[#A0522D] hover:from-[#A0522D] hover:to-[#8B4513] text-white px-6 py-3 md:px-8 md:py-6 text-base md:text-lg shadow-lg hover:shadow-xl w-full sm:w-auto">
                     Explorer le Catalogue
                     <ArrowRight className="ml-2" size={20} />
                   </Button>
                 </Link>
                 <Link to="/contact">
-                  <Button variant="outline" className="border-2 border-[#D4AF37] text-[#8B4513] hover:bg-[#D4AF37] hover:text-white px-8 py-6 text-lg">
+                  <Button variant="outline" className="border-2 border-[#D4AF37] text-[#8B4513] hover:bg-[#D4AF37] hover:text-white px-6 py-3 md:px-8 md:py-6 text-base md:text-lg w-full sm:w-auto">
                     Nous Contacter
                   </Button>
                 </Link>
@@ -89,7 +89,7 @@ const HomePage = () => {
             </h2>
             <div className="w-20 h-1 bg-gradient-to-r from-[#D4AF37] to-[#FFD700] mx-auto rounded-full"></div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
             {categories.map((category, index) => (
               <Link
                 key={category.id}
@@ -105,11 +105,11 @@ const HomePage = () => {
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                   </div>
-                  <div className="p-4 bg-gradient-to-br from-white to-[#FFFAF5]">
-                    <h3 className="font-bold text-lg text-gray-900 mb-1 group-hover:text-[#8B4513] transition-colors">
+                  <div className="p-3 md:p-4 bg-gradient-to-br from-white to-[#FFFAF5]">
+                    <h3 className="font-bold text-sm md:text-lg text-gray-900 mb-1 group-hover:text-[#8B4513] transition-colors line-clamp-1">
                       {category.name}
                     </h3>
-                    <p className="text-sm text-gray-600">{category.description}</p>
+                    <p className="text-xs md:text-sm text-gray-600 line-clamp-2">{category.description}</p>
                   </div>
                 </Card>
               </Link>
@@ -143,9 +143,9 @@ const HomePage = () => {
                       </Badge>
                     )}
                   </div>
-                  <div className="p-4">
-                    <h3 className="font-semibold text-lg text-gray-900 mb-2">{product.name}</h3>
-                    <p className="text-2xl font-bold text-[#8B4513]">${product.price}</p>
+                  <div className="p-3 md:p-4">
+                    <h3 className="font-semibold text-base md:text-lg text-gray-900 mb-2 line-clamp-2">{product.name}</h3>
+                    <p className="text-xl md:text-2xl font-bold text-[#8B4513]">${product.price}</p>
                   </div>
                 </Card>
               </Link>
@@ -153,7 +153,7 @@ const HomePage = () => {
           </div>
           <div className="text-center mt-8">
             <Link to="/catalogue/all">
-              <Button className="bg-gradient-to-r from-[#8B4513] to-[#A0522D] hover:from-[#A0522D] hover:to-[#8B4513] text-white px-8 py-3">
+              <Button className="bg-gradient-to-r from-[#8B4513] to-[#A0522D] hover:from-[#A0522D] hover:to-[#8B4513] text-white px-6 py-3 w-full sm:w-auto">
                 Voir Tous les Produits
                 <ArrowRight className="ml-2" size={18} />
               </Button>
@@ -171,12 +171,12 @@ const HomePage = () => {
             </h2>
             <div className="w-20 h-1 bg-gradient-to-r from-[#D4AF37] to-[#FFD700] mx-auto rounded-full"></div>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {companyInfo.services.map((service, index) => (
-              <Card key={index} className="p-6 card-hover border-l-4 border-[#D4AF37]">
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#D4AF37] to-[#FFD700] flex items-center justify-center flex-shrink-0">
-                    <Star className="text-white" size={24} />
+              <Card key={index} className="p-4 md:p-6 card-hover border-l-4 border-[#D4AF37]">
+                <div className="flex items-start space-x-3 md:space-x-4">
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-br from-[#D4AF37] to-[#FFD700] flex items-center justify-center flex-shrink-0">
+                    <Star className="text-white" size={20} />
                   </div>
                   <div>
                     <h3 className="font-semibold text-lg text-gray-900 mb-1">{service}</h3>
@@ -198,9 +198,9 @@ const HomePage = () => {
             </h2>
             <div className="w-20 h-1 bg-gradient-to-r from-[#D4AF37] to-[#FFD700] mx-auto rounded-full"></div>
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-4 md:gap-8">
             {testimonials.map((testimonial) => (
-              <Card key={testimonial.id} className="p-6 card-hover">
+              <Card key={testimonial.id} className="p-4 md:p-6 card-hover">
                 <div className="flex mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
                     <Star key={i} className="text-[#FFD700] fill-current" size={20} />
@@ -218,16 +218,16 @@ const HomePage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-[#8B4513] to-[#A0522D] text-white">
+      <section className="py-12 md:py-20 bg-gradient-to-br from-[#8B4513] to-[#A0522D] text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-6">
             Prêt à transformer votre intérieur ?
           </h2>
-          <p className="text-xl mb-8 text-white/90 max-w-2xl mx-auto">
+          <p className="text-base md:text-xl mb-8 text-white/90 max-w-2xl mx-auto">
             Contactez-nous dès aujourd'hui pour discuter de votre projet et obtenir un devis personnalisé.
           </p>
           <Link to="/contact">
-            <Button className="bg-gradient-to-r from-[#D4AF37] to-[#FFD700] hover:from-[#FFD700] hover:to-[#D4AF37] text-[#1a1a1a] px-10 py-6 text-lg font-semibold shadow-xl hover:shadow-2xl">
+            <Button className="bg-gradient-to-r from-[#D4AF37] to-[#FFD700] hover:from-[#FFD700] hover:to-[#D4AF37] text-[#1a1a1a] px-6 md:px-10 py-4 md:py-6 text-base md:text-lg font-semibold shadow-xl hover:shadow-2xl">
               Contactez-nous Maintenant
               <ArrowRight className="ml-2" size={22} />
             </Button>

@@ -90,7 +90,7 @@ const CataloguePage = () => {
       {/* Header */}
       <section className="bg-gradient-to-r from-[#8B4513] to-[#A0522D] text-white py-12">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+          <h1 className="text-3xl md:text-5xl font-bold mb-4">
             {currentCategory ? currentCategory.name : 'Tous les Produits'}
           </h1>
           {currentCategory && (
@@ -195,14 +195,14 @@ const CataloguePage = () => {
                     </Badge>
                   </div>
                   <div className="p-4">
-                    <h3 className="font-semibold text-lg text-gray-900 mb-2 line-clamp-2">
+                    <h3 className="font-semibold text-base md:text-lg text-gray-900 mb-2 line-clamp-2">
                       {product.name}
                     </h3>
                     <p className="text-sm text-gray-600 mb-3 line-clamp-2">
                       {product.description}
                     </p>
-                    <div className="flex items-center justify-between">
-                      <p className="text-2xl font-bold text-[#8B4513]">${product.price}</p>
+                    <div className="flex items-center justify-between gap-2">
+                      <p className="text-xl md:text-2xl font-bold text-[#8B4513]">${product.price}</p>
                       {product.inStock && (
                         <p className="text-sm text-gray-500">{product.stockQuantity} disponible(s)</p>
                       )}

@@ -39,13 +39,13 @@ const Layout = ({ children }) => {
         isScrolled ? 'bg-white shadow-lg' : 'bg-white/95 backdrop-blur-sm'
       }`}>
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-20">
+          <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-3">
-              <img 
-                src="https://customer-assets.emergentagent.com/job_db14b7bd-ed3f-4182-bc59-0985af6ad221/artifacts/fkf7zzsl_1764530562322.jpg" 
-                alt="Furniture Design Business Logo" 
-                className="h-16 w-auto object-contain"
+              <img
+                src="https://customer-assets.emergentagent.com/job_db14b7bd-ed3f-4182-bc59-0985af6ad221/artifacts/fkf7zzsl_1764530562322.jpg"
+                alt="Furniture Design Business Logo"
+                className="h-10 md:h-16 w-auto object-contain"
               />
             </Link>
 
@@ -117,14 +117,14 @@ const Layout = ({ children }) => {
 
       {/* Footer */}
       <footer className="bg-gradient-to-br from-[#2a1810] to-[#1a0f0a] text-white mt-16">
-        <div className="container mx-auto px-4 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="container mx-auto px-4 py-8 md:py-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
             {/* Company Info */}
             <div>
-              <img 
-                src="https://customer-assets.emergentagent.com/job_db14b7bd-ed3f-4182-bc59-0985af6ad221/artifacts/fkf7zzsl_1764530562322.jpg" 
-                alt="Furniture Design Business Logo" 
-                className="h-20 mb-4 bg-white p-2 rounded-lg"
+              <img
+                src="https://customer-assets.emergentagent.com/job_db14b7bd-ed3f-4182-bc59-0985af6ad221/artifacts/fkf7zzsl_1764530562322.jpg"
+                alt="Furniture Design Business Logo"
+                className="h-16 md:h-20 mb-4 bg-white p-2 rounded-lg"
               />
               <p className="text-gray-300 text-sm leading-relaxed">
                 {companyInfo.slogan}

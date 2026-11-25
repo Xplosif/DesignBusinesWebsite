@@ -52,10 +52,10 @@ const ContactPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-[#FFF8F0]">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-[#8B4513] to-[#A0522D] text-white py-20">
+      <section className="bg-gradient-to-r from-[#8B4513] to-[#A0522D] text-white py-12 md:py-20">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">Contactez-Nous</h1>
-          <p className="text-xl text-white/90 max-w-3xl mx-auto">
+          <h1 className="text-3xl md:text-6xl font-bold mb-6">Contactez-Nous</h1>
+          <p className="text-base md:text-xl text-white/90 max-w-3xl mx-auto">
             Nous sommes là pour répondre à toutes vos questions et vous aider avec vos projets
           </p>
         </div>
@@ -63,30 +63,30 @@ const ContactPage = () => {
 
       {/* Contact Info Cards */}
       <section className="container mx-auto px-4 py-16">
-        <div className="grid md:grid-cols-3 gap-6 mb-16">
-          <Card className="p-6 text-center card-hover border-t-4 border-[#D4AF37]">
-            <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-[#8B4513] to-[#A0522D] flex items-center justify-center">
-              <Phone className="text-white" size={28} />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-10 md:mb-16">
+          <Card className="p-5 md:p-6 text-center card-hover border-t-4 border-[#D4AF37]">
+            <div className="w-14 h-14 md:w-16 md:h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-[#8B4513] to-[#A0522D] flex items-center justify-center">
+              <Phone className="text-white" size={24} />
             </div>
-            <h3 className="font-bold text-xl text-gray-900 mb-2">Téléphone</h3>
-            <a href={`tel:${companyInfo.phone}`} className="text-[#8B4513] hover:underline text-lg">
+            <h3 className="font-bold text-lg md:text-xl text-gray-900 mb-2">Téléphone</h3>
+            <a href={`tel:${companyInfo.phone}`} className="text-[#8B4513] hover:underline text-base md:text-lg break-all">
               {companyInfo.phone}
             </a>
           </Card>
 
-          <Card className="p-6 text-center card-hover border-t-4 border-[#D4AF37]">
-            <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-[#8B4513] to-[#A0522D] flex items-center justify-center">
-              <Mail className="text-white" size={28} />
+          <Card className="p-5 md:p-6 text-center card-hover border-t-4 border-[#D4AF37]">
+            <div className="w-14 h-14 md:w-16 md:h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-[#8B4513] to-[#A0522D] flex items-center justify-center">
+              <Mail className="text-white" size={24} />
             </div>
-            <h3 className="font-bold text-xl text-gray-900 mb-2">Email</h3>
-            <a href={`mailto:${companyInfo.email}`} className="text-[#8B4513] hover:underline">
+            <h3 className="font-bold text-lg md:text-xl text-gray-900 mb-2">Email</h3>
+            <a href={`mailto:${companyInfo.email}`} className="text-[#8B4513] hover:underline text-sm md:text-base break-all">
               {companyInfo.email}
             </a>
           </Card>
 
-          <Card className="p-6 text-center card-hover border-t-4 border-[#25D366]">
-            <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#25D366] flex items-center justify-center">
-              <MessageCircle className="text-white" size={28} />
+          <Card className="p-5 md:p-6 text-center card-hover border-t-4 border-[#25D366]">
+            <div className="w-14 h-14 md:w-16 md:h-16 mx-auto mb-4 rounded-full bg-[#25D366] flex items-center justify-center">
+              <MessageCircle className="text-white" size={24} />
             </div>
             <h3 className="font-bold text-xl text-gray-900 mb-2">WhatsApp</h3>
             <button
@@ -101,10 +101,10 @@ const ContactPage = () => {
         <div className="grid md:grid-cols-2 gap-12">
           {/* Contact Form */}
           <div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
               Envoyez-nous un <span className="text-[#8B4513]">Message</span>
             </h2>
-            <Card className="p-8">
+            <Card className="p-5 md:p-8">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
@@ -199,13 +199,13 @@ const ContactPage = () => {
 
           {/* Map and Address */}
           <div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
               Notre <span className="text-[#8B4513]">Localisation</span>
             </h2>
-            <Card className="p-8 mb-6">
-              <div className="flex items-start space-x-4 mb-6">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#D4AF37] to-[#FFD700] flex items-center justify-center flex-shrink-0">
-                  <MapPin className="text-white" size={24} />
+            <Card className="p-5 md:p-8 mb-6">
+              <div className="flex items-start space-x-3 md:space-x-4 mb-6">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-br from-[#D4AF37] to-[#FFD700] flex items-center justify-center flex-shrink-0">
+                  <MapPin className="text-white" size={20} />
                 </div>
                 <div className="flex-1">
                   <h3 className="font-bold text-lg text-gray-900 mb-2">Adresse</h3>
@@ -231,17 +231,17 @@ const ContactPage = () => {
             >
               <Card className="overflow-hidden hover:shadow-xl transition-shadow cursor-pointer">
                 <div className="aspect-video w-full bg-gradient-to-br from-[#8B4513] to-[#A0522D] flex items-center justify-center">
-                  <div className="text-center text-white">
-                    <MapPin size={64} className="mx-auto mb-4" />
-                    <h3 className="text-2xl font-bold mb-2">Voir sur Google Maps</h3>
-                    <p className="text-white/90">Cliquez pour obtenir l'itinéraire</p>
+                  <div className="text-center text-white px-4">
+                    <MapPin size={48} className="mx-auto mb-4" />
+                    <h3 className="text-xl md:text-2xl font-bold mb-2">Voir sur Google Maps</h3>
+                    <p className="text-sm md:text-base text-white/90">Cliquez pour obtenir l'itinéraire</p>
                   </div>
                 </div>
               </Card>
             </a>
 
             {/* Opening Hours */}
-            <Card className="p-6 mt-6 bg-gradient-to-br from-[#FFF8F0] to-white">
+            <Card className="p-5 md:p-6 mt-6 bg-gradient-to-br from-[#FFF8F0] to-white">
               <h3 className="font-bold text-lg text-gray-900 mb-4">Heures d'ouverture</h3>
               <div className="space-y-2 text-gray-700">
                 <div className="flex justify-between">

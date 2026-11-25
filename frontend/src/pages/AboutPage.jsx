@@ -24,10 +24,10 @@ const AboutPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-[#FFF8F0]">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-[#8B4513] to-[#A0522D] text-white py-20">
+      <section className="bg-gradient-to-r from-[#8B4513] to-[#A0522D] text-white py-12 md:py-20">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">À Propos de Nous</h1>
-          <p className="text-xl text-white/90 max-w-3xl mx-auto">
+          <h1 className="text-3xl md:text-6xl font-bold mb-6">À Propos de Nous</h1>
+          <p className="text-base md:text-xl text-white/90 max-w-3xl mx-auto">
             Découvrez l'histoire et les valeurs de Furniture Design Business
           </p>
         </div>
@@ -46,7 +46,7 @@ const AboutPage = () => {
               Notre <span className="text-[#8B4513]">Histoire</span>
             </h2>
           </div>
-          <Card className="p-8 bg-white shadow-lg">
+          <Card className="p-6 md:p-8 bg-white shadow-lg">
             <p className="text-lg text-gray-700 leading-relaxed mb-6">
               {companyInfo.about}
             </p>
@@ -73,8 +73,8 @@ const AboutPage = () => {
                 <div className="inline-block px-4 py-2 bg-gradient-to-r from-[#D4AF37] to-[#FFD700] rounded-full mb-4">
                   <span className="text-sm font-semibold text-gray-900">{companyInfo.ceo.title}</span>
                 </div>
-                <h2 className="text-4xl font-bold text-gray-900 mb-4">{companyInfo.ceo.name}</h2>
-                <p className="text-lg text-gray-700 leading-relaxed">
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{companyInfo.ceo.name}</h2>
+                <p className="text-base md:text-lg text-gray-700 leading-relaxed">
                   {companyInfo.ceo.bio}
                 </p>
               </div>
@@ -130,13 +130,13 @@ const AboutPage = () => {
       {/* Location Section */}
       <section className="container mx-auto px-4 py-16">
         <div className="max-w-4xl mx-auto">
-          <Card className="p-8 bg-gradient-to-br from-[#FFF8F0] to-white">
-            <div className="flex items-start space-x-4">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#8B4513] to-[#A0522D] flex items-center justify-center flex-shrink-0">
-                <MapPin className="text-white" size={24} />
+          <Card className="p-6 md:p-8 bg-gradient-to-br from-[#FFF8F0] to-white">
+            <div className="flex items-start space-x-3 md:space-x-4">
+              <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-br from-[#8B4513] to-[#A0522D] flex items-center justify-center flex-shrink-0">
+                <MapPin className="text-white" size={20} />
               </div>
-              <div className="flex-1">
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">Notre Localisation</h3>
+              <div className="flex-1 min-w-0">
+                <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3">Notre Localisation</h3>
                 <a
                   href={companyInfo.mapsUrl}
                   target="_blank"

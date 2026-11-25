@@ -112,14 +112,14 @@ const AdminCategories = () => {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6 md:mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Gestion des Catégories</h1>
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Gestion des Catégories</h1>
           <p className="text-gray-600">{categories.length} catégorie(s) au total</p>
         </div>
         <Button
           onClick={() => handleOpenDialog()}
-          className="bg-gradient-to-r from-[#8B4513] to-[#A0522D] hover:from-[#A0522D] hover:to-[#8B4513] text-white"
+          className="bg-gradient-to-r from-[#8B4513] to-[#A0522D] hover:from-[#A0522D] hover:to-[#8B4513] text-white w-full sm:w-auto"
         >
           <Plus className="mr-2" size={20} />
           Ajouter une Catégorie
@@ -127,7 +127,7 @@ const AdminCategories = () => {
       </div>
 
       {/* Categories Grid */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6">
         {categories.map((category) => (
           <Card key={category.id} className="overflow-hidden card-hover">
             <div className="aspect-video overflow-hidden">
@@ -137,10 +137,10 @@ const AdminCategories = () => {
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="p-6">
-              <h3 className="text-xl font-bold text-gray-900 mb-2">{category.name}</h3>
-              <p className="text-gray-600 mb-4">{category.description}</p>
-              <div className="flex space-x-2">
+            <div className="p-4 md:p-6">
+              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2">{category.name}</h3>
+              <p className="text-gray-600 mb-4 text-sm md:text-base line-clamp-3">{category.description}</p>
+              <div className="flex gap-2">
                 <Button
                   variant="outline"
                   onClick={() => handleOpenDialog(category)}

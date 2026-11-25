@@ -89,7 +89,7 @@ const ProductPage = () => {
 
       {/* Product Details */}
       <section className="container mx-auto px-4 py-12">
-        <div className="grid md:grid-cols-2 gap-12">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12">
           {/* Images */}
           <div>
             <div className="relative aspect-square rounded-xl overflow-hidden mb-4 bg-gray-100">
@@ -121,7 +121,7 @@ const ProductPage = () => {
                   <button
                     key={index}
                     onClick={() => setCurrentImageIndex(index)}
-                    className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${
+                    className={`flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-lg overflow-hidden border-2 transition-all ${
                       index === currentImageIndex
                         ? 'border-[#D4AF37]'
                         : 'border-gray-200 hover:border-gray-400'
@@ -143,9 +143,9 @@ const ProductPage = () => {
             <Badge className={product.inStock ? 'bg-green-500' : 'bg-red-500'} >
               {product.inStock ? 'En Stock' : 'Épuisé'}
             </Badge>
-            <h1 className="text-4xl font-bold text-gray-900 mt-4 mb-4">{product.name}</h1>
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mt-4 mb-4">{product.name}</h1>
             <div className="flex items-baseline space-x-3 mb-6">
-              <p className="text-5xl font-bold text-[#8B4513]">${product.price}</p>
+              <p className="text-4xl md:text-5xl font-bold text-[#8B4513]">${product.price}</p>
               <span className="text-gray-500">USD</span>
             </div>
 
@@ -220,11 +220,11 @@ const ProductPage = () => {
                       {relatedProduct.inStock ? 'En Stock' : 'Épuisé'}
                     </Badge>
                   </div>
-                  <div className="p-4">
-                    <h3 className="font-semibold text-lg text-gray-900 mb-2 line-clamp-2">
+                  <div className="p-3 md:p-4">
+                    <h3 className="font-semibold text-base md:text-lg text-gray-900 mb-2 line-clamp-2">
                       {relatedProduct.name}
                     </h3>
-                    <p className="text-2xl font-bold text-[#8B4513]">${relatedProduct.price}</p>
+                    <p className="text-xl md:text-2xl font-bold text-[#8B4513]">${relatedProduct.price}</p>
                   </div>
                 </Card>
               </Link>

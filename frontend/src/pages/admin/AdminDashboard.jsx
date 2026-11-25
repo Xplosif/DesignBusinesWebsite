@@ -70,23 +70,23 @@ const AdminDashboard = () => {
 
   return (
     <div>
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Tableau de Bord</h1>
+      <div className="mb-6 md:mb-8">
+        <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Tableau de Bord</h1>
         <p className="text-gray-600">Bienvenue dans votre panneau d'administration</p>
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-6 md:mb-8">
         {stats.map((stat, index) => {
           const Icon = stat.icon;
           return (
-            <Card key={index} className="p-6 card-hover">
-              <div className="flex items-center justify-between">
-                <div>
+            <Card key={index} className="p-4 md:p-6 card-hover">
+              <div className="flex items-center justify-between gap-2">
+                <div className="min-w-0">
                   <p className="text-sm text-gray-600 mb-1">{stat.title}</p>
-                  <p className="text-3xl font-bold text-gray-900">{stat.value}</p>
+                  <p className="text-2xl md:text-3xl font-bold text-gray-900 truncate">{stat.value}</p>
                 </div>
-                <div className={`w-14 h-14 rounded-lg ${stat.bgColor} flex items-center justify-center`}>
+                <div className={`w-12 h-12 md:w-14 md:h-14 rounded-lg ${stat.bgColor} flex items-center justify-center flex-shrink-0`}>
                   <Icon className={stat.textColor} size={28} />
                 </div>
               </div>
@@ -97,23 +97,23 @@ const AdminDashboard = () => {
 
       {/* Low Stock Alert */}
       {lowStockProducts.length > 0 && (
-        <Card className="p-6 mb-8 border-l-4 border-orange-500">
-          <h2 className="text-xl font-bold text-gray-900 mb-4">Alerte Stock Faible</h2>
+        <Card className="p-4 md:p-6 mb-6 md:mb-8 border-l-4 border-orange-500">
+          <h2 className="text-lg md:text-xl font-bold text-gray-900 mb-4">Alerte Stock Faible</h2>
           <div className="space-y-3">
             {lowStockProducts.map((product) => (
-              <div key={product.id} className="flex items-center justify-between p-3 bg-orange-50 rounded-lg">
-                <div className="flex items-center space-x-3">
+              <div key={product.id} className="flex items-center justify-between gap-2 p-3 bg-orange-50 rounded-lg">
+                <div className="flex items-center space-x-3 min-w-0">
                   <img
                     src={product.images[0]}
                     alt={product.name}
-                    className="w-12 h-12 rounded object-cover"
+                    className="w-10 h-10 md:w-12 md:h-12 rounded object-cover flex-shrink-0"
                   />
-                  <div>
-                    <p className="font-semibold text-gray-900">{product.name}</p>
+                  <div className="min-w-0">
+                    <p className="font-semibold text-gray-900 truncate">{product.name}</p>
                     <p className="text-sm text-gray-600">{product.category}</p>
                   </div>
                 </div>
-                <span className="px-3 py-1 bg-orange-500 text-white rounded-full text-sm font-semibold">
+                <span className="px-3 py-1 bg-orange-500 text-white rounded-full text-sm font-semibold flex-shrink-0">
                   {product.stockQuantity} restant(s)
                 </span>
               </div>
@@ -123,23 +123,23 @@ const AdminDashboard = () => {
       )}
 
       {/* Recent Products */}
-      <Card className="p-6">
-        <h2 className="text-xl font-bold text-gray-900 mb-4">Produits Récents</h2>
+      <Card className="p-4 md:p-6">
+        <h2 className="text-lg md:text-xl font-bold text-gray-900 mb-4">Produits Récents</h2>
         <div className="space-y-3">
           {products.slice(0, 5).map((product) => (
-            <div key={product.id} className="flex items-center justify-between p-3 hover:bg-gray-50 rounded-lg transition-colors">
-              <div className="flex items-center space-x-3">
+            <div key={product.id} className="flex items-center justify-between gap-2 p-3 hover:bg-gray-50 rounded-lg transition-colors">
+              <div className="flex items-center space-x-3 min-w-0">
                 <img
                   src={product.images[0]}
                   alt={product.name}
-                  className="w-16 h-16 rounded object-cover"
+                  className="w-12 h-12 md:w-16 md:h-16 rounded object-cover flex-shrink-0"
                 />
-                <div>
-                  <p className="font-semibold text-gray-900">{product.name}</p>
+                <div className="min-w-0">
+                  <p className="font-semibold text-gray-900 truncate">{product.name}</p>
                   <p className="text-sm text-gray-600">${product.price}</p>
                 </div>
               </div>
-              <span className={`px-3 py-1 rounded-full text-sm font-semibold ${
+              <span className={`px-3 py-1 rounded-full text-sm font-semibold flex-shrink-0 ${
                 product.inStock
                   ? 'bg-green-100 text-green-700'
                   : 'bg-red-100 text-red-700'

@@ -108,6 +108,16 @@ img {
   }
 }
 
+@media (max-width: 480px) {
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .product-grid .p-4 {
+    padding: 0.75rem;
+  }
+}
+
 /* Animations */
 @keyframes fadeInUp {
   from {
@@ -142,12 +152,12 @@ img {
 /* WhatsApp Floating Button */
 .whatsapp-float {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
+  bottom: 20px;
+  right: 20px;
   z-index: 1000;
   background: #25D366;
-  width: 60px;
-  height: 60px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -160,6 +170,15 @@ img {
 .whatsapp-float:hover {
   transform: scale(1.1);
   box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
+}
+
+@media (min-width: 768px) {
+  .whatsapp-float {
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+  }
 }
 
 /* Gold Accents */

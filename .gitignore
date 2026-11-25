@@ -14,3 +14,6 @@ backend/uploads/
 
 # Misc
 nul
+
+# Build output
+build/

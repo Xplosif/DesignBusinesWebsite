@@ -176,14 +176,14 @@ const AdminProducts = () => {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6 md:mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Gestion des Produits</h1>
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Gestion des Produits</h1>
           <p className="text-gray-600">{products.length} produit(s) au total</p>
         </div>
         <Button
           onClick={() => handleOpenDialog()}
-          className="bg-gradient-to-r from-[#8B4513] to-[#A0522D] hover:from-[#A0522D] hover:to-[#8B4513] text-white"
+          className="bg-gradient-to-r from-[#8B4513] to-[#A0522D] hover:from-[#A0522D] hover:to-[#8B4513] text-white w-full sm:w-auto"
         >
           <Plus className="mr-2" size={20} />
           Ajouter un Produit
@@ -207,46 +207,46 @@ const AdminProducts = () => {
       {/* Products Table */}
       <Card className="overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="w-full">
+          <table className="w-full min-w-[720px]">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Image</th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Nom</th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Catégorie</th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Prix</th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Stock</th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Statut</th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Actions</th>
+                <th className="px-3 md:px-6 py-3 md:py-4 text-left text-xs md:text-sm font-semibold text-gray-900 whitespace-nowrap">Image</th>
+                <th className="px-3 md:px-6 py-3 md:py-4 text-left text-xs md:text-sm font-semibold text-gray-900 whitespace-nowrap">Nom</th>
+                <th className="px-3 md:px-6 py-3 md:py-4 text-left text-xs md:text-sm font-semibold text-gray-900 whitespace-nowrap">Catégorie</th>
+                <th className="px-3 md:px-6 py-3 md:py-4 text-left text-xs md:text-sm font-semibold text-gray-900 whitespace-nowrap">Prix</th>
+                <th className="px-3 md:px-6 py-3 md:py-4 text-left text-xs md:text-sm font-semibold text-gray-900 whitespace-nowrap">Stock</th>
+                <th className="px-3 md:px-6 py-3 md:py-4 text-left text-xs md:text-sm font-semibold text-gray-900 whitespace-nowrap">Statut</th>
+                <th className="px-3 md:px-6 py-3 md:py-4 text-left text-xs md:text-sm font-semibold text-gray-900 whitespace-nowrap">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
               {filteredProducts.map((product) => (
                 <tr key={product.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">
+                  <td className="px-3 md:px-6 py-3 md:py-4">
                     <img
                       src={product.images[0]}
                       alt={product.name}
-                      className="w-16 h-16 rounded object-cover"
+                      className="w-12 h-12 md:w-16 md:h-16 rounded object-cover"
                     />
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 md:px-6 py-3 md:py-4">
                     <p className="font-medium text-gray-900">{product.name}</p>
                   </td>
-                  <td className="px-6 py-4">
-                    <Badge variant="outline">{product.category}</Badge>
+                  <td className="px-3 md:px-6 py-3 md:py-4">
+                    <Badge variant="outline" className="whitespace-nowrap">{product.category}</Badge>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap">
                     <p className="font-semibold text-gray-900">${product.price}</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap">
                     <p className="text-gray-700">{product.stockQuantity}</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap">
                     <Badge className={product.inStock ? 'bg-green-500' : 'bg-red-500'}>
                       {product.inStock ? 'En Stock' : 'Épuisé'}
                     </Badge>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap">
                     <div className="flex space-x-2">
                       <Button
                         size="sm"
@@ -380,7 +380,7 @@ const AdminProducts = () => {
                 </button>
 
                 {imageFiles.length > 0 && (
-                  <div className="grid grid-cols-3 gap-3 mt-4">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-4">
                     {imageFiles.map((img, index) => (
                       <div key={index} className="relative group">
                         <img
